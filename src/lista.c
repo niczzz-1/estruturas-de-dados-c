@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "lista.h" 
 
+no* lista_inicializar(void){
+    return NULL;
+}
+
 no* inserir_elemento_inicio(no *inicio, int valor){
     no *novo;
 
@@ -28,7 +32,7 @@ no* inserir_elemento_fim(no *inicio, int valor){
     aux = inicio;
     while (aux->prox != NULL)
         aux = aux->prox;
-    
+
     aux->prox = novo;
     return inicio;
 }

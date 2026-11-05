@@ -7,6 +7,7 @@ typedef struct no{
 }no;
 
 //Declaração das funções contidas na lista encadeada
+no* lista_inicializar(void);
 no* inserir_elemento_inicio(no *inicio, int valor);
 no* inserir_elemento_fim(no *inicio, int valor);
 no* remover_inicio(no *inicio);
