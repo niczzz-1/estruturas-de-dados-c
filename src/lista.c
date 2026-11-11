@@ -6,7 +6,7 @@ no* lista_inicializar(void){
     return NULL;
 }
 
-no* inserir_elemento_inicio(no *inicio, int valor){
+no* inserir_elemento_inicio_lista(no *inicio, int valor){
     no *novo;
 
     novo = malloc(sizeof(no));
@@ -17,7 +17,7 @@ no* inserir_elemento_inicio(no *inicio, int valor){
     return novo;
 }
 
-no* inserir_elemento_fim(no *inicio, int valor){
+no* inserir_elemento_fim_lista(no *inicio, int valor){
     no *novo, *aux;
 
     novo = malloc(sizeof(no));
@@ -37,7 +37,7 @@ no* inserir_elemento_fim(no *inicio, int valor){
     return inicio;
 }
 
-const no* buscar(const no *inicio, int valor){
+const no* buscar_lista(const no *inicio, int valor){
     const no *aux; 
     
     aux = inicio;
@@ -47,7 +47,7 @@ const no* buscar(const no *inicio, int valor){
     return aux;
 }
 
-no* remover_inicio(no *inicio){
+no* remover_inicio_lista(no *inicio){
     if (inicio == NULL)
         return NULL;
     
@@ -58,7 +58,7 @@ no* remover_inicio(no *inicio){
     return aux;
 }
 
-no* remover_fim(no *inicio){
+no* remover_fim_lista(no *inicio){
     if (inicio == NULL)
         return NULL;
 
