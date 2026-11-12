@@ -41,7 +41,7 @@ void exibir_pilha(const no *topo){
         printf("%d\n", aux->info);
         aux = aux->prox;
     }
-    printf("NULL\n");
+    printf("NULL\n\n");
 }
 
 no* liberar_pilha(no *topo){

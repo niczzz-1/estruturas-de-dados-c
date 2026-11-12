@@ -5,10 +5,95 @@
 #include "fila.h"
 
 void testar_lista(void);
+void testar_pilha(void);
 
 int main(void){
     testar_lista();
+    testar_pilha();
     return 0;
+}
+
+void testar_pilha(void){
+    printf("Iniciando testes de pilha...\n");
+    no *topo;
+
+    topo = pilha_inicializar();
+    // esperado: topo -> NULL
+    assert(topo == NULL);
+
+    const no *t1 = pilha_topo(topo);
+    // esperado: topo = NULL
+    assert(t1 == NULL);
+
+    exibir_pilha(topo);
+    // esperado: NULL
+
+    topo = push(topo, 1);
+    // esperado: topo -> 1 -> NULL
+    assert(topo != NULL && topo->info == 1);
+
+    exibir_pilha(topo);
+    // esperado: 1 -> NULL
+
+    topo = push(topo, 2); 
+    // esperado: topo -> 2 -> 1 -> NULL
+    assert(topo != NULL && topo->info == 2);
+
+    exibir_pilha(topo);
+    // esperado: 2 -> 1 -> NULL
+
+    topo = push(topo, 3);
+    // esperado: topo -> 3 -> 2 -> 1 -> NULL
+    assert(topo != NULL && topo->info == 3);
+
+    exibir_pilha(topo);
+    // esperado:  3 -> 2 -> 1 -> NULL
+
+    topo = pop(topo); 
+    // esperado: topo -> 2 -> 1 -> NULL
+    assert(topo != NULL && topo->info == 2);
+
+    exibir_pilha(topo);
+    // esperado: 2 -> 1 -> NULL
+
+    topo = pop(topo);
+    // esperado: topo -> 1 -> NULL
+    assert(topo != NULL && topo->info == 1);
+
+    exibir_pilha(topo);
+    // esperado: 1 -> NULL
+
+    topo = pop(topo);
+    // esperado: topo -> NULL
+    assert(topo == NULL);
+
+    exibir_pilha(topo);
+    // esperado: NULL
+
+    topo = pop(topo);
+    // esperado = NULL
+    assert(topo == NULL);
+
+    topo = push(topo, 1);
+    topo = push(topo, 2);
+    topo = push(topo, 3);
+    // esperado: topo -> 3 -> 2 -> 1 -> NULL
+
+    const no *t2 = pilha_topo(topo);
+    // esperado: topo = 3
+    assert(t2 != NULL && t2->info == 3);
+
+    exibir_pilha(topo);
+    // esperado: 3 -> 2 -> 1 -> NULL
+
+    topo = liberar_pilha(topo);
+    // esperado: topo -> NULL
+    assert(topo == NULL);
+
+    exibir_pilha(topo);
+    // esperado: NULL
+
+    printf("Testes de pilha concluidos com exito...\n\n");
 }
 
 void testar_lista(void){
@@ -104,5 +189,5 @@ void testar_lista(void){
     exibir_lista(inicio);
     // esperado: NULL
 
-    printf("Testes de lista concluidos com exito.\n");
+    printf("Testes de lista concluidos com exito.\n\n");
 }
