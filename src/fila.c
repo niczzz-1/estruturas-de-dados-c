@@ -14,18 +14,20 @@ fila* fila_inicializar(void){
 }
 
 const no* fila_frente(const fila *f){
-    if (f == NULL) return NULL;
+    if (f == NULL) 
+        return NULL;
     return f->inicio;
 }
 
 void enfileirar(fila *f, int valor){
-   if (f == NULL) return;
+   if (f == NULL) 
+        return;
 
    no *novo;
 
    novo = malloc(sizeof(no));
    if (novo == NULL)
-    return;
+        return;
    novo->info = valor;
    novo->prox = NULL;
 
@@ -38,7 +40,8 @@ void enfileirar(fila *f, int valor){
 }
 
 void desenfileirar(fila *f){
-    if (f == NULL) return;
+    if (f == NULL) 
+        return;
 
     if (f->inicio == NULL)
             return;
@@ -54,7 +57,8 @@ void desenfileirar(fila *f){
 }
 
 void exibir_fila(const fila *f){
-    if (f == NULL) return;
+    if (f == NULL) 
+        return;
 
     const no *aux;
 

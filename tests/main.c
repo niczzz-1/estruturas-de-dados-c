@@ -6,11 +6,100 @@
 
 void testar_lista(void);
 void testar_pilha(void);
+void testar_fila(void);
 
 int main(void){
     testar_lista();
     testar_pilha();
+    testar_fila();
     return 0;
+}
+
+void testar_fila(void){
+    printf("Iniciando testes de fila...\n");
+    fila *f;
+    
+    f = fila_inicializar();
+    // esperado: f -> inicio == NULL e f -> fim == NULL
+    assert(f->inicio == NULL && f->fim == NULL);
+
+    const no *frente1 = fila_frente(f);
+    // esperado: frente1 = NULL;
+    assert(frente1 == NULL);
+
+    enfileirar(f, 1);
+    // esperado: f -> inicio = 1 e f -> fim = 1
+    assert(f->inicio->info == 1 && f->fim->info == 1);
+
+    enfileirar(f, 2);
+    // esperado: f -> inicio = 1 e f -> fim = 2
+    assert(f->inicio->info == 1 && f->fim->info == 2);
+
+    enfileirar(f, 3);
+    // esperado: f -> inicio = 1 e f -> fim = 3
+    assert(f->inicio->info == 1 && f->fim->info == 3);
+
+    exibir_fila(f);
+    // esperado: 1 -> 2 -> 3 -> NULL
+
+    const no *frente2 = fila_frente(f);
+    // esperado: frente2 -> info = 1
+    assert(frente2 != NULL && frente2->info == 1);
+
+    desenfileirar(f);
+    // esperado: f -> inicio = 2 e f -> fim = 3
+    assert(f->inicio->info == 2 && f->fim->info == 3);
+
+    desenfileirar(f);
+    // esperado: f -> inicio = 3 e f -> fim = 3
+    assert(f->inicio->info == 3 && f->fim->info == 3);
+
+    desenfileirar(f);
+    // esperado: f -> inicio = NULL e f -> fim = NULL
+    assert(f->inicio == NULL && f->fim == NULL);
+
+    enfileirar(f, 4);
+    // esperado: f -> inicio = 4 e f -> fim = 4
+    assert(f->inicio->info == 4 && f->fim->info == 4);
+
+    f = liberar_fila(f);
+    // esperado: f -> NULL
+    assert(f == NULL);
+    
+    f = fila_inicializar();
+    // esperado: f -> inicio = NULL e f -> fim = NULL
+    assert(f->inicio == NULL && f->fim == NULL);
+
+    desenfileirar(f);
+    // esperado: f -> inicio = NULL e f -> fim = NULL (não há elemento a ser desenfileirado)
+
+    enfileirar(f, 3);
+    enfileirar(f, 2);
+    enfileirar(f, 1);
+    // esperado: f -> inicio = 3 e f -> fim = 1;
+    assert(f->inicio->info == 3 && f->fim->info == 1);
+
+    exibir_fila(f);
+    // esperado: 3 -> 2 -> 1 -> NULL
+
+    const no *frente3 = fila_frente(f);
+    // esperado: frente3 -> info = 3;
+    assert(frente3 != NULL && frente3->info == 3);
+
+    f = liberar_fila(f);
+    // esperado: f -> NULL
+    assert(f == NULL);
+
+    // testes com ponteiro nulo:
+
+    assert(fila_frente(NULL) == NULL);
+    assert(liberar_fila(NULL) == NULL);
+    enfileirar(NULL, 5);
+    desenfileirar(NULL);
+    exibir_fila(NULL);
+    // esperado: não travar em nenhum
+
+    printf("Testes de fila concluidos com exito.\n\n");
 }
 
 void testar_pilha(void){
