@@ -38,10 +38,10 @@ void exibir_pilha(const no *topo){
 
     aux = topo;
     while(aux != NULL){
-        printf("%d\n", aux->info);
+        printf("%d -> ", aux->info);
         aux = aux->prox;
     }
-    printf("NULL\n\n");
+    printf("NULL\n");
 }
 
 no* liberar_pilha(no *topo){
